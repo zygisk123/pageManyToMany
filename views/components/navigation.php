@@ -63,17 +63,11 @@
     <div class="collapse navbar-collapse col-9" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="<?=$_USER_PATH."/views/shop/showAll.php"?>">SHOW SHOES</a>
+                <a class="nav-link active" aria-current="page" href="<?=$_USER_PATH."/views/recipe/showAll.php"?>">SHOW RECIPES</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?=$_USER_PATH."/views/shop/add.php"?>">ADD NEW SHOES</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?=$_USER_PATH."/views/brand/add.php"?>">ADD NEW Brand</a>
-            </li> 
-            <li class="nav-item">
-                <a class="nav-link" href="<?=$_USER_PATH."/views/brand/showAll.php"?>">SHOW ALL BRANDS</a>
-            </li>        
+                <a class="nav-link" href="<?=$_USER_PATH."/views/recipe/add.php"?>">ADD NEW RECIPE</a>
+            </li>      
           </ul>
         </div>
         <div class="col-3">   
