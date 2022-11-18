@@ -18,6 +18,16 @@ class RecipeController {
     {
         Recipe::store();
     }
+
+    public static function update()
+    {
+        $recipe = new Recipe();
+        $recipe->id = $_GET['showRecipeID'];
+        $recipe->recipeName = $_GET['name'];
+        $recipe->ingredients = $_GET['ingredients'];
+        $recipe->amount = array_values( array_filter($_GET['amounts']));
+        $recipe->update();
+    }
     // public static function addBrand()
     // {
     //     Brand::create();

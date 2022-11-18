@@ -18,6 +18,13 @@ if(strpos($_SERVER['REQUEST_URI'], "/recipe/") !== false){
 
             // $items = RecipeController::getAll();
         }    
+
+        if (isset($_GET['editRecipe'])) {
+            RecipeController::update();
+            $recipes = RecipeController::getAll();
+            header("Location: ".$_OUTER_PATH."/pageManyToMany/views/recipe/showAll.php");
+            die;
+        }
         // if (isset($_GET['goToEdit'])){
         //     $item = ItemController::showItem($_GET['showItemID']);
         // }
@@ -48,6 +55,8 @@ if(strpos($_SERVER['REQUEST_URI'], "/recipe/") !== false){
             header("Location: ".$_OUTER_PATH."/pageManyToMany/views/recipe/showAll.php");
             die;
         }
+
+
     }
 
 }

@@ -69,5 +69,32 @@ class Recipe {
         $stmt->close();
         $db->conn->close();
     }
+
+    public function update()
+    {
+        $db = new DB();
+        $stmt = $db->conn->prepare("UPDATE `recipes` SET `recipe_name`= ? WHERE `id` = ?");
+        $stmt->bind_param("si", $_GET['name'],  $_GET['showRecipeID']);
+        print_r($stmt);
+       // die;
+        if(!$stmt->execute()) {
+            print_r( $stmt->error_list);
+        }
+
+        $query = "delete from `ingredients_recipes` where `recipe_id` = ".$this->id;
+        $db->conn->query($query);
+        $ingredientAmount = array_values( array_filter($_GET['amounts']) );
+        foreach ($_GET['ingredients'] as $key => $ingredient) {         
+            $stmt = $db->conn->prepare("INSERT INTO `ingredients_recipes`(`ingredient_id`, `recipe_id`, `amount`) VALUES (?, ?, ?)");
+            $stmt->bind_param("iid", $ingredient, $this->id, $ingredientAmount[$key]);
+            if(!$stmt->execute()) {
+                print_r( $stmt->error_list);
+            }
+        }
+
+
+        $stmt->close();
+        $db->conn->close();
+    }
 }
 ?>

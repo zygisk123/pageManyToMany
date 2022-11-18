@@ -7,9 +7,10 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
+            <form action="" method="get">
                 <div class="name">
                     <h1>
-                        <?=$showRecipe->recipeName?>
+                        <input type="text" name="name" value="<?=$showRecipe->recipeName?>">
                     </h1>
                 </div>
                 <?php 
@@ -37,9 +38,9 @@
                 <?php } ?>
                 <div class="row mt-3">
                     <div class="col-6">
-                        <form action="<?=$_USER_PATH.'/views/recipe/edit.php'?>" method="get">
+                        
                             <input type="hidden" name="showRecipeID" value="<?=$showRecipe->id?>">
-                            <button type="submit" name="goToEdit" class="btn btn-primary">Edit</button>
+                            <button type="submit" name="editRecipe" class="btn btn-primary">Edit</button>
                         </form>
                     </div>
                     <div class="col-6">
