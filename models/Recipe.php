@@ -56,10 +56,7 @@ class Recipe {
         }
         $recipeId = $stmt->insert_id;
         $ingredientAmount = array_values( array_filter($_POST['amounts']) );
-        print_r($ingredientAmount);
-        $amountID = 0;
-        foreach ($_POST['ingredients'] as $key => $ingredient) {   
-            echo $key . " ";      
+        foreach ($_POST['ingredients'] as $key => $ingredient) {       
             $stmt = $db->conn->prepare("INSERT INTO `ingredients_recipes`(`ingredient_id`, `recipe_id`, `amount`) VALUES (?, ?, ?)");
             $stmt->bind_param("iid", $ingredient, $recipeId, $ingredientAmount[$key]);
             if(!$stmt->execute()) {
@@ -75,8 +72,6 @@ class Recipe {
         $db = new DB();
         $stmt = $db->conn->prepare("UPDATE `recipes` SET `recipe_name`= ? WHERE `id` = ?");
         $stmt->bind_param("si", $_GET['name'],  $_GET['showRecipeID']);
-        print_r($stmt);
-       // die;
         if(!$stmt->execute()) {
             print_r( $stmt->error_list);
         }
@@ -95,6 +90,22 @@ class Recipe {
 
         $stmt->close();
         $db->conn->close();
+    }
+
+    public static function delete($id)
+    {
+        $db = new DB();
+        $query = "delete from `ingredients_recipes` where `recipe_id` = ".$id;
+        $db->conn->query($query);
+
+
+
+        $stmt = $db->conn->prepare("DELETE FROM `recipes` WHERE `id` = ?");
+        $stmt->bind_param("i", $_GET['id']);
+        $stmt->execute();
+ 
+        $stmt->close();
+        $db->conn->close(); 
     }
 }
 ?>

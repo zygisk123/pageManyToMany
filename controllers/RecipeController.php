@@ -28,6 +28,12 @@ class RecipeController {
         $recipe->amount = array_values( array_filter($_GET['amounts']));
         $recipe->update();
     }
+
+    public static function delete($id)
+    {
+        Recipe::delete($id);
+    }
+
     // public static function addBrand()
     // {
     //     Brand::create();
