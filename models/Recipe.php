@@ -55,8 +55,7 @@ class Recipe {
             print_r( $stmt->error_list);
         }
         $recipeId = $stmt->insert_id;
-        $array = [0,0,0,0,0,0,0];
-        $ingredientAmount = array_filter($_POST['amounts']);
+        $ingredientAmount = array_values( array_filter($_POST['amounts']) );
         print_r($ingredientAmount);
         $amountID = 0;
         foreach ($_POST['ingredients'] as $key => $ingredient) {   
@@ -67,8 +66,6 @@ class Recipe {
                 print_r( $stmt->error_list);
             }
         }
-        die;
-
         $stmt->close();
         $db->conn->close();
     }
